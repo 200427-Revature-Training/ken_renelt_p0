@@ -1,0 +1,19 @@
+{
+  "name": "ken_renelt_p0",
+  "version": "1.0.0",
+  "description": "\"Project 0\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/200427-Revature-Training/ken_renelt_p0.git"
+  },
+  "author": "\"ken renelt\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/200427-Revature-Training/ken_renelt_p0/issues"
+  },
+  "homepage": "https://github.com/200427-Revature-Training/ken_renelt_p0#readme"
+}
