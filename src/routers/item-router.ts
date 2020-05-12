@@ -33,7 +33,7 @@ itemRouter.get('/:id', (request, response, next) =>{
     });
 });
 
-// update
+// update the id of the selected item
 itemRouter.patch('/:id', (request, response, next) => {
     const item = request.body;
 
@@ -48,7 +48,7 @@ itemRouter.patch('/:id', (request, response, next) => {
     })
 });
 
-// delete
+// delete the selected item
 itemRouter.delete('/:id', (request, response, next) => {
     const item = request.body;
 
@@ -58,5 +58,18 @@ itemRouter.delete('/:id', (request, response, next) => {
     }).catch(err => {
         console.log(err);
         response.sendStatus(500);
+    });
+});
+
+itemRouter.post('', (request, response, next) => {
+    const item = request.body;
+    itemService.createItem(item)
+    .then(newItem => {
+        response.json(newItem);
+    }).catch(err => {
+        console.log('err');
+        response.sendStatus(500);
+    }).finally(() => {
+        next();
     })
-})
+});

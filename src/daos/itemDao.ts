@@ -6,10 +6,10 @@ import {Item, ItemRow } from '../data-models/Item';
 /**
  * itemDao - functions to return items specified by the user
  * getAllItems
- *read - getSelectedItem
- *create - createItem
- * update change entries
- * delete - remove entries
+ * read - getSelectedItem
+ * create - createItem
+ * update patchItem change entries
+ * delete - deleteItem  remove entries
  */
 
 // retrieve a list of all items for sale

@@ -13,12 +13,12 @@ export function getSelectItem(id:number): Promise<Item> {
     return itemDao.getSelectItem(id);
 }
 
-//create
+// create
 export function createItem(item:Item): Promise<Item> {
     return itemDao.createItem(item);
 }
 
-//update
+// update
 export function patchItem(item:Item): Promise<Item> {
     return itemDao.patchItem(item);
 }
