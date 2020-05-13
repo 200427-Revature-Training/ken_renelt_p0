@@ -1,5 +1,6 @@
 import { ShoppingCartItem } from '../data-models/ShoppingCart';
 import * as cartDao from '../daos/shoppingCartDao';
+import { PrettyShoppingCartItem } from '../data-models/PrettyShoppingCart';
 
 // read
 export function getShoppingCart(): Promise<ShoppingCartItem[]> {
@@ -22,3 +23,6 @@ export function createShoppingCart(item: ShoppingCartItem): Promise<ShoppingCart
     return cartDao.createShoppingCart(item);
 }
 
+export function getAllCartsForUser(id:number): Promise<PrettyShoppingCartItem[]> {
+    return cartDao.getAllCartsForUser(id);
+}

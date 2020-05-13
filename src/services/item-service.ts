@@ -1,5 +1,8 @@
 import { Item } from '../data-models/Item';
 import * as itemDao from '../daos/itemDao';
+import * as cartDao from '../daos/shoppingCartDao';
+import { ShoppingCartItem } from '../data-models/ShoppingCart';
+
 
 // crud create read update delete
 
@@ -27,4 +30,8 @@ export function patchItem(item:Item): Promise<Item> {
 export function deleteItem(item:Item): Promise<Item> {
     return itemDao.deleteItem(item);
 }
-// export function addItemToCart()
+
+ export function addItemToCart(cartItem: ShoppingCartItem): Promise<ShoppingCartItem>
+ {
+     return itemDao.purshaceItem(cartItem);
+ }

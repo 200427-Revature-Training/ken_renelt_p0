@@ -4,6 +4,7 @@ import * as userService from '../services/user-service';
 export const userRouter = express.Router();
 
 const users = [];
+
 userRouter.get('', (request, response, next) => {
     userService.getAllUsers().then(users => {
         console.log('request recieved - processing at middleware 2 user-router');

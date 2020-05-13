@@ -1,5 +1,6 @@
 import { db } from '../daos/db';
 import {ShoppingCartItem, ShoppingCartRow} from '../data-models/shoppingCart';
+import { PrettyShoppingCartRow, PrettyShoppingCartItem } from '../data-models/PrettyShoppingCart';
 
 export function getShoppingCart(): Promise<ShoppingCartItem[]> {
     const sql = 'SELECT * FROM shopping_cart';
@@ -48,4 +49,23 @@ export function deleteShoppingCart(cart: ShoppingCartItem): Promise<ShoppingCart
 
  return db.query<ShoppingCartRow>(sql,[cart.id])
     .then(result => result.rows.map(r => ShoppingCartItem.from(r))[0]);
+}
+
+export function getAllCartsForUser(id: number): Promise<PrettyShoppingCartItem[]> {
+
+    const sql = 'SELECT * FROM shopping_cart WHERE owner_id = $1';
+
+    // This is not working as it does in d beaver. it shows correctly in the console log
+   const sql1 = 'SELECT users.first_name, items.product_name, items.price, shopping_cart.quantity \
+   FROM shopping_cart LEFT JOIN items ON shopping_cart.product_id = items.id \
+   LEFT JOIN users ON users.id = shopping_cart.owner_id WHERE users.id = $1';
+
+   return db.query<PrettyShoppingCartRow>(sql1, [id])
+        .then(result => {
+            const rows:PrettyShoppingCartRow[] = result.rows;
+
+            const allItems:PrettyShoppingCartItem[] = rows.map(row => PrettyShoppingCartItem.from(row));
+            console.log(rows);
+            return allItems;
+        });
 }

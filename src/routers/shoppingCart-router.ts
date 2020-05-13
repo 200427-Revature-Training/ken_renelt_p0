@@ -6,6 +6,7 @@ export const cartRouter = express.Router();
 
 // get all of the items in the shopping cart
 cartRouter.get('', (request, response, next) => {
+   
     cartService.getShoppingCart().then(items => {
         console.log("request - shoppingcart-router");
         response.json(items);
@@ -15,14 +16,20 @@ cartRouter.get('', (request, response, next) => {
     });
 });
 
-// get selected item from the cart
-/*
+// get selected shopping carts for the player id
 cartRouter.get('/:id', (request, response, next) => {
     const id = +request.params.id;
-
-   // cartService.
+   cartService.getAllCartsForUser(id).then(items => {
+        console.log("request recieved- item-router");
+        response.json(items);
+        next();
+    
+    }).catch(err => {
+        console.log(err);
+        response.sendStatus(500);
+    });
 })
- */
+
 
  // remove an item from your shopping cart
  cartRouter.delete('/:id', (request, response, next) => {

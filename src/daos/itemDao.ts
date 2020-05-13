@@ -2,6 +2,7 @@
 
 import {db } from '../daos/db';
 import {Item, ItemRow } from '../data-models/Item';
+import { ShoppingCartItem } from '../data-models/ShoppingCart';
 
 /**
  * itemDao - functions to return items specified by the user
@@ -67,3 +68,20 @@ export function deleteItem(item: Item): Promise<Item> {
         item.id
     ]).then(result => result.rows.map(r => Item.from(r))[0]);
 }
+
+export function purshaceItem(cart: ShoppingCartItem): Promise<ShoppingCartItem> {
+    const sql = 'INSERT INTO shopping_cart (owner_id, product_id, quantity) \
+    VALUES ($1, $2, $3) RETURNING *';
+
+    return db.query(sql, [
+        cart.ownerId,
+        cart.productId,
+        cart.quantity
+    ]).then(result => result.rows.map(row => ShoppingCartItem.from(row))[0]);
+}
+/*
+export function purshaceItem(cartItem) : Promise<ShoppingCartItem>
+{
+    const sql = 'CREATE '
+}
+*/

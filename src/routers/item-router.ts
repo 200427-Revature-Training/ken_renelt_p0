@@ -73,3 +73,16 @@ itemRouter.post('', (request, response, next) => {
         next();
     })
 });
+
+itemRouter.post('/:id', (request, response, next) => {
+    const item = request.body;
+    itemService.addItemToCart(item)
+    .then(newItem => {
+        response.json(newItem);
+    }).catch(err => {
+        console.log(err);
+        response.sendStatus(500);
+    }).finally(() => {
+        next();
+    })
+});
