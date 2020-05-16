@@ -6,12 +6,12 @@ export const cartRouter = express.Router();
 
 // get all of the items in the shopping cart
 cartRouter.get('', (request, response, next) => {
-   
+
     cartService.getShoppingCart().then(items => {
-        console.log("request - shoppingcart-router");
+       // console.log("request - shoppingcart-router");
         response.json(items);
     }).catch(err => {
-        console.log(err);
+       // console.log(err);
         response.sendStatus(500);
     });
 });
@@ -20,12 +20,12 @@ cartRouter.get('', (request, response, next) => {
 cartRouter.get('/:id', (request, response, next) => {
     const id = +request.params.id;
    cartService.getAllCartsForUser(id).then(items => {
-        console.log("request recieved- item-router");
+       // console.log("request recieved- item-router");
         response.json(items);
         next();
-    
+
     }).catch(err => {
-        console.log(err);
+       // console.log(err);
         response.sendStatus(500);
     });
 })
@@ -38,7 +38,7 @@ cartRouter.get('/:id', (request, response, next) => {
      .then(deletedItem => {
          response.json(deletedItem);
      }).catch(err => {
-         console.log(err);
+        // console.log(err);
          response.sendStatus(500);
      });
  });
@@ -51,7 +51,7 @@ cartRouter.get('/:id', (request, response, next) => {
      .then(createdItem => {
          response.json(createdItem);
      }).catch(err => {
-         console.log(err);
+         // console.log(err);
          response.sendStatus(500);
      }).finally(() => {
          next();

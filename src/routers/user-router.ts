@@ -7,11 +7,11 @@ const users = [];
 
 userRouter.get('', (request, response, next) => {
     userService.getAllUsers().then(users => {
-        console.log('request recieved - processing at middleware 2 user-router');
+       // console.log('request recieved - processing at middleware 2 user-router');
         response.json(users);
         next();
     }).catch(err => {
-        console.log(err);
+       // console.log(err);
         response.sendStatus(500);
     });
 });
@@ -39,7 +39,7 @@ userRouter.post('', (request, response, next) => {
         response.json(newUser);
         next();
     }).catch(err => {
-        console.log(err);
+      //  console.log(err);
         response.sendStatus(500);
         next();
     });
@@ -51,7 +51,7 @@ userRouter.patch('', (request, response, next) => {
     .then(updatedUser => {
         response.json(updatedUser);
     }).catch(err => {
-        console.log(err);
+        //console.log(err);
         response.sendStatus(500);
     }).finally(() => {
         next();

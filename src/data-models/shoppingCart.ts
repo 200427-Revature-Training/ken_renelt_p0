@@ -5,7 +5,7 @@ export class ShoppingCartItem {
     ownerId:number;
     productId:number;
     quantity:number;
-
+    
     static from(obj: ShoppingCartRow)
     {
         const cart = new ShoppingCartItem(
@@ -22,7 +22,6 @@ export class ShoppingCartItem {
         this.quantity = quantity;
     }
 }
-
 
 export interface ShoppingCartRow{
     id:number;

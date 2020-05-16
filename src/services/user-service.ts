@@ -21,7 +21,7 @@ export function getUserById(id:number): Promise<User> {
 
 // check the values before we ask the server to create new user
 // tell the userDao to create user
-export function saveUser(user:User): Promise<User> {
+export function saveUser(user:any): Promise<User> {
 
     // if we validate here we want to validate on the server also
     if (user.firstName && user.lastName && user.birthdate)
@@ -31,7 +31,7 @@ export function saveUser(user:User): Promise<User> {
     }
     else
     {
-        console.warn('Person invalid');
+       // console.warn('User invalid');
         return new Promise((resolve, reject) => reject(422));
     }
 }
@@ -43,10 +43,12 @@ export function patchUser(input:any): Promise<User> {
         input.passWord, input.adminPriv,
         input.lastName, new Date(input.birthdate)
     );
+
     if(!user.id)
     {
         throw new Error('400');
     }
+
     return userDao.patchUser(user);
 }
 
