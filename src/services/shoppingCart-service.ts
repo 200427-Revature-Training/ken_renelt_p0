@@ -8,9 +8,9 @@ export function getShoppingCart(): Promise<ShoppingCartItem[]> {
 }
 
 // update -- change your order add or subtract items from your cart
-export function updateShoppingCart(cart: ShoppingCartItem): Promise<ShoppingCartItem> {
-    return cartDao.updateShoppingCart(cart);
-}
+// export function updateShoppingCart(cart: ShoppingCartItem): Promise<ShoppingCartItem> {
+//    return cartDao.updateShoppingCart(cart);
+// }
 
 // create doesnt make sense here
 
@@ -20,7 +20,17 @@ export function deleteShoppingCart(item: ShoppingCartItem): Promise<ShoppingCart
 }
 
 export function createShoppingCart(item: ShoppingCartItem): Promise<ShoppingCartItem> {
-    return cartDao.createShoppingCart(item);
+
+    console.log('You are calling the shoppingCart-service');
+    if(item.ownerId && item.productId)
+      {
+          return cartDao.createShoppingCart(item);
+      }
+      else
+      {
+         // console.warn('User invalid');
+          return new Promise((resolve, reject) => reject(422));
+      }
 }
 
 export function getAllCartsForUser(id:number): Promise<PrettyShoppingCartItem[]> {

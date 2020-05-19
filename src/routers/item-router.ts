@@ -8,12 +8,11 @@ const items = [];
 // read all the selected items
 itemRouter.get('', (request, response, next) => {
     itemService.getAllItems().then(items => {
-        console.log("request recieved- item-router");
+        // console.log("request recieved- item-router");
         response.json(items);
         next();
-    
     }).catch(err => {
-        console.log(err);
+       // console.log(err);
         response.sendStatus(500);
     });
 });
@@ -41,7 +40,7 @@ itemRouter.patch('/:id', (request, response, next) => {
     .then(updateItem => {
         response.json(updateItem);
     }).catch(err => {
-        console.log(err);
+        // console.log(err);
         response.sendStatus(500);
     }).finally(() => {
         next();
@@ -56,7 +55,7 @@ itemRouter.delete('/:id', (request, response, next) => {
     .then(deletedItem => {
         response.json(deletedItem);
     }).catch(err => {
-        console.log(err);
+       // console.log(err);
         response.sendStatus(500);
     });
 });
@@ -67,7 +66,7 @@ itemRouter.post('', (request, response, next) => {
     .then(newItem => {
         response.json(newItem);
     }).catch(err => {
-        console.log('err');
+        // console.log('err');
         response.sendStatus(500);
     }).finally(() => {
         next();
@@ -80,7 +79,7 @@ itemRouter.post('/:id', (request, response, next) => {
     .then(newItem => {
         response.json(newItem);
     }).catch(err => {
-        console.log(err);
+        // console.log(err);
         response.sendStatus(500);
     }).finally(() => {
         next();

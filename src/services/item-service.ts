@@ -22,16 +22,33 @@ export function createItem(item:Item): Promise<Item> {
 }
 
 // update
-export function patchItem(item:Item): Promise<Item> {
+export function patchItem(input:any): Promise<Item> {
+
+    const item = new Item (
+        input.id,
+        input.category,
+        input.productName,
+        input.price,
+        input.quantityLeft,
+    );
+
+    if(!item.id)
+    {
+        throw new Error('400');
+    }
     return itemDao.patchItem(item);
 }
 
 // delete
 export function deleteItem(item:Item): Promise<Item> {
+    if(!item.id)
+    {
+        throw new Error('400');
+    }
     return itemDao.deleteItem(item);
 }
 
  export function addItemToCart(cartItem: ShoppingCartItem): Promise<ShoppingCartItem>
  {
-     return itemDao.purshaceItem(cartItem);
+     return itemDao.addItemToCart(cartItem);
  }

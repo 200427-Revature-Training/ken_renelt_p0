@@ -47,3 +47,73 @@ describe('Get cart by id', () => {
         .expect(500);
     });
 });
+
+describe('Delete item', () => {
+    test('Delete item under normal conditions', async()=> {
+        mockCartService.deleteShoppingCart.mockImplementation(async ()=>({}));
+
+        const payload = {
+            id:1,
+            ownerID: 1,
+            productId: 1,
+            quantity:1
+        }
+
+        await request(app)
+        .delete('/shoppingcart/1')
+        .send(payload)
+        .expect(200)
+        .expect('content-type', 'application/json; charset=utf-8');
+    });
+
+    test('Delete item throw error', async () => {
+        mockCartService.deleteShoppingCart.mockImplementation(async () => {throw new Error()});
+
+        const payload = {
+            id: 1,
+            ownerID: 1,
+            productId: 1,
+            quantity:1
+        }
+
+        await request(app)
+        .delete('/shoppingcart/1')
+        .send(payload)
+        .expect(500);
+    });
+});
+
+describe('Post item to your Shopping cart', () => {
+    test('Post item to cart normal test', async () => {
+        mockCartService.createShoppingCart.mockImplementation(async () => ({}));
+
+        const payload = {
+            id: 1,
+            ownerID: 1,
+            productId: 1,
+            quantity:1
+        }
+
+        await request(app)
+        .post('/shoppingcart')
+        .send(payload)
+        .expect(200)
+        .expect('content-type', 'application/json; charset=utf-8');
+    });
+
+    test('Post item throw error 500', async () => {
+        mockCartService.createShoppingCart.mockImplementation(async() => { throw new Error()});
+
+        const payload = {
+            id: 1,
+            ownerID: 1,
+            productId: 1,
+            quantity:1
+        }
+        await request(app)
+        .post('/shoppingcart')
+        .send(payload)
+        .expect(500);
+
+    });
+});

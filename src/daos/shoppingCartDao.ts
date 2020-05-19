@@ -14,6 +14,7 @@ export function getShoppingCart(): Promise<ShoppingCartItem[]> {
     });
 }
 
+/*
 // update -- change your order add or subtract items from your cart
 export function updateShoppingCart(cart: ShoppingCartItem): Promise<ShoppingCartItem> {
    // sql statement
@@ -29,7 +30,7 @@ export function updateShoppingCart(cart: ShoppingCartItem): Promise<ShoppingCart
        cart.id
    ]).then(result => result.rows.map(r => ShoppingCartItem.from(r))[0]);
 }
-
+*/
 // create does it make sense here?
 export function createShoppingCart(cart: ShoppingCartItem): Promise<ShoppingCartItem> {
     const sql = 'INSERT INTO shopping_cart (owner_id, product_id, quantity) \

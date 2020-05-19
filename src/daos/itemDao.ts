@@ -34,6 +34,7 @@ export function getSelectItem(id:number): Promise<Item>{
 }
 
 export function createItem(item: Item): Promise<Item>{
+
     const sql = 'INSERT INTO items (category, product_name, price, quantity_left) \
     VALUES ($1, $2, $3, $4) RETURNING *';
 
@@ -69,7 +70,7 @@ export function deleteItem(item: Item): Promise<Item> {
     ]).then(result => result.rows.map(r => Item.from(r))[0]);
 }
 
-export function purshaceItem(cart: ShoppingCartItem): Promise<ShoppingCartItem> {
+export function addItemToCart(cart: ShoppingCartItem): Promise<ShoppingCartItem> {
     const sql = 'INSERT INTO shopping_cart (owner_id, product_id, quantity) \
     VALUES ($1, $2, $3) RETURNING *';
 

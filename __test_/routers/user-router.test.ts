@@ -103,7 +103,7 @@ describe('Patch /users', () => {
             .patch('/users')
             .send(payload)
             .expect(500);
-    })
+    });
 });
 
 describe('GET /users/:id', () => {

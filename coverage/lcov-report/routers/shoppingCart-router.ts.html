@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/24</span>
+                <span class='fraction'>24/24</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">46.15% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/24</span>
+                <span class='fraction'>24/24</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -150,28 +150,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import express from 'express';
 import * as cartService from '../services/shoppingCart-service';
@@ -207,29 +207,29 @@ cartRouter.get('/:id', (request, response, next) =&gt; {
 &nbsp;
 &nbsp;
  // remove an item from your shopping cart
- cartRouter.delete('/:id', <span class="fstat-no" title="function not covered" >(r</span>equest, response, next) =&gt; {
-    const item = <span class="cstat-no" title="statement not covered" >request.body;</span>
-<span class="cstat-no" title="statement not covered" >     cartService.deleteShoppingCart(item)</span>
-     .then(<span class="fstat-no" title="function not covered" >deletedItem </span>=&gt; {
-<span class="cstat-no" title="statement not covered" >         response.json(deletedItem);</span>
-     }).catch(<span class="fstat-no" title="function not covered" >err </span>=&gt; {
+ cartRouter.delete('/:id', (request, response, next) =&gt; {
+    const item = request.body;
+     cartService.deleteShoppingCart(item)
+     .then(deletedItem =&gt; {
+         response.json(deletedItem);
+     }).catch(err =&gt; {
         // console.log(err);
-<span class="cstat-no" title="statement not covered" >         response.sendStatus(500);</span>
+         response.sendStatus(500);
      });
  });
 &nbsp;
  // add another item to your cart
- cartRouter.post('', <span class="fstat-no" title="function not covered" >(r</span>equest, response, next) =&gt; {
-     const item = <span class="cstat-no" title="statement not covered" >request.body;</span>
+ cartRouter.post('', (request, response, next) =&gt; {
+     const item = request.body;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >     cartService.createShoppingCart(item)</span>
-     .then(<span class="fstat-no" title="function not covered" >createdItem </span>=&gt; {
-<span class="cstat-no" title="statement not covered" >         response.json(createdItem);</span>
-     }).catch(<span class="fstat-no" title="function not covered" >err </span>=&gt; {
+     cartService.createShoppingCart(item)
+     .then(createdItem =&gt; {
+         response.json(createdItem);
+     }).catch(err =&gt; {
          // console.log(err);
-<span class="cstat-no" title="statement not covered" >         response.sendStatus(500);</span>
-     }).finally(<span class="fstat-no" title="function not covered" >() =</span>&gt; {
-<span class="cstat-no" title="statement not covered" >         next();</span>
+         response.sendStatus(500);
+     }).finally(() =&gt; {
+         next();
      })
  })</pre></td></tr></table></pre>
 
@@ -238,7 +238,7 @@ cartRouter.get('/:id', (request, response, next) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat May 16 2020 13:03:33 GMT-0500 (Central Daylight Time)
+                at Tue May 19 2020 15:15:15 GMT-0500 (Central Daylight Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

@@ -148,7 +148,7 @@ describe('saveUser user-service-test', () => {
 describe ('Patch users:', () => {
 
     test('patch fails when no valid id is provided', async () => {
-        mockUserDao.getAllUsers.mockImplementation(async () => []);
+       // mockUserDao.getAllUsers.mockImplementation(async () => []);
         expect.assertions(1);
 
         mockUserDao.patchUser
@@ -169,17 +169,24 @@ describe ('Patch users:', () => {
     });
 });
 
-describe ('Get all Users: by id',  () => {
-    test('get all users by id', async () => {
+describe ('Get all Users:',  () => {
+    test('get all users', async () => {
+
+        expect.assertions(2);
 
         mockUserDao.getAllUsers.mockImplementation(async () => ({}));
 
         const result = await userService.getAllUsers();
+        try {
+            expect(result).toContain([]);
+        } catch (error) {
+            expect(error).toBeDefined();
+        }
     });
 });
 
 
-describe ('Get all Users:',  () => {
+describe ('Get all Users by id:',  () => {
     test('get all users', async () => {
 
         mockUserDao.getAllUsers.mockImplementation(async () => ({}));
@@ -195,6 +202,8 @@ describe ('Get all Users:',  () => {
     });
 });
 
+// describe the function delete 
+// test the delete user function in userDao
 describe('Delete user ', () => {
 
     test('Delete user', async () => {
